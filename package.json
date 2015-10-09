@@ -1,6 +1,6 @@
 {
   "name": "level-out",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "leveldb to stdout",
   "main": "./lib/level-out.js",
   "scripts": {
@@ -13,7 +13,10 @@
   "dependencies": {
     "leveldown": "1.4.1",
     "levelup": "1.2.1"
-  }, 
+  },
+  "bin": {
+    "level-out": "./bin/level-out"
+  },
   "keywords": [
     "level",
     "stdout"
