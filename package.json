@@ -11,6 +11,7 @@
     "url": "git+https://github.com/fergiemcdowall/level-out.git"
   },
   "dependencies": {
+    "commander": "2.9.0",
     "leveldown": "1.4.1",
     "levelup": "1.2.1"
   },
