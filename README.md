@@ -1,48 +1,34 @@
-A command line app for dumping the entire contents of a leveldb to stdout.
+A simple utility for reading from a leveldb via [levelup](https://github.com/Level/levelup)
 
-For maximum hacking pleasure, this module should be installed globally
-like so: `npm install -g level-out`. It can then be used as a command
-line utility from anywhere on your system and the output can be piped
-in to any POSIX program that reads stdout (such as `grep`, `sed`,
-`awk`, `less`, `cat`, and so on)
+[![NPM version][npm-version-image]][npm-url] [![MIT License][license-image]][license-url] [![Build Status][travis-image]][travis-url]
 
+## Usage
 
-## Simple usage
+Install globally with `npm install -g level-out` and then use like so:
 
-On a command line type:
-
-`level-out <location of database>`
-
-...and get a print out of every key-value pair in the database in a
-JSON format. You could for example type:
-
-`level-out myCoolDB`
-
-...and get:
 
 ```
-{key: 1, value: "theValueForOne"}
-{key: 2, value: "theValueForTwo"}
-{key: 3, value: "theValueForThre"}
-```
 
-## Fancy-schmancy usage
+  Usage: level-out [options]
 
-On a command line type:
+  Options:
 
-`level-out <location of database> <eval>`
-
-...and get a print out that is formatted however you want. You could for example type:
-
-`level-out myCoolDB "data.key + '  --  ' + data.value"`
-
-and get a print out like this for every record in the database:
+    -h, --help              output usage information
+    -V, --version           output the version number
+    -d, --database [value]  the name of the leveldb
+    -k, --key [value]       specify a key
+    -g, --gte [value]       specify start of a key range
+    -l, --lte [value]       specify end of a key range
 
 ```
-1  --  theValueForOne
-2  --  theValueForTwo
-3  --  theValueForThree
-```
 
-`<eval>` is any expression that can interpret an object called `data`,
-with `key` and `value` attributes into a string.
+
+[license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
+[license-url]: LICENSE
+
+[npm-url]: https://npmjs.org/package/level-out
+[npm-version-image]: http://img.shields.io/npm/v/level-out.svg?style=flat
+[npm-downloads-image]: http://img.shields.io/npm/dm/level-out.svg?style=flat
+
+[travis-url]: http://travis-ci.org/fergiemcdowall/level-out
+[travis-image]: http://img.shields.io/travis/fergiemcdowall/level-out.svg?style=flat
