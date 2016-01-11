@@ -9,16 +9,15 @@ Install globally with `npm install -g level-out` and then use like so:
 
 ```
 
-  Usage: level-out [options]
+  Usage: level-out <databaseName> [options]
 
   Options:
 
-    -h, --help              output usage information
-    -V, --version           output the version number
-    -d, --database [value]  the name of the leveldb
-    -k, --key [value]       specify a key
-    -g, --gte [value]       specify start of a key range
-    -l, --lte [value]       specify end of a key range
+    -h, --help         output usage information
+    -V, --version      output the version number
+    -k, --key [value]  specify a key
+    -g, --gte [value]  specify start of a key range
+    -l, --lte [value]  specify end of a key range
 
 ```
 
