@@ -21,6 +21,13 @@ Install globally with `npm install -g level-out` and then use like so:
 
 ```
 
+To read the contents of a database, you would do something like
+
+```bash
+level-out myDBName
+```
+
+To write to and delete from a database- check out [level-in](https://www.npmjs.com/package/level-in)
 
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license-url]: LICENSE
