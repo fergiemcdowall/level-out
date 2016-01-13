@@ -1,6 +1,6 @@
 {
   "name": "level-out",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "leveldb to stdout",
   "main": "./lib/level-out.js",
   "scripts": {

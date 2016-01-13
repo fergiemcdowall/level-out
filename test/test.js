@@ -86,15 +86,15 @@ test('read test', function (t) {
   const cmd1 = spawn('bin/level-out', [dbName, '-k', '2'])
   t.plan(1)
   cmd1.stdout.on('data', (data) => {
-    t.equal(data.toString(), '{ key: \'2\', value: \'two\' }\n')
+    t.equal(data.toString(), '{"key":"2","value":"two"}\n')
   })
 })
 
 test('read test for ranges', function (t) {
   const cmd = spawn('bin/level-out', [dbName, '-g', '8'])
   const stdoutLines = [
-    '{ key: \'8\', value: \'eight\' }',
-    '{ key: \'9\', value: \'nine\' }'
+    '{"key":"8","value":"eight"}',
+    '{"key":"9","value":"nine"}'
   ]
   t.plan(2)
   var i = 0
@@ -110,10 +110,10 @@ test('read test for ranges', function (t) {
 test('read test for ranges', function (t) {
   const cmd = spawn('bin/level-out', [dbName, '-l', '4'])
   const stdoutLines = [
-    '{ key: \'1\', value: \'one\' }',
-    '{ key: \'2\', value: \'two\' }',
-    '{ key: \'3\', value: \'three\' }',
-    '{ key: \'4\', value: \'four\' }'
+    '{"key":"1","value":"one"}',
+    '{"key":"2","value":"two"}',
+    '{"key":"3","value":"three"}',
+    '{"key":"4","value":"four"}'
   ]
   t.plan(4)
   var i = 0
@@ -129,10 +129,10 @@ test('read test for ranges', function (t) {
 test('read test for ranges', function (t) {
   const cmd = spawn('bin/level-out', [dbName, '-l', '8', '-g', '5'])
   const stdoutLines = [
-    '{ key: \'5\', value: \'five\' }',
-    '{ key: \'6\', value: \'six\' }',
-    '{ key: \'7\', value: \'seven\' }',
-    '{ key: \'8\', value: \'eight\' }'
+    '{"key":"5","value":"five"}',
+    '{"key":"6","value":"six"}',
+    '{"key":"7","value":"seven"}',
+    '{"key":"8","value":"eight"}'
   ]
   t.plan(4)
   var i = 0
@@ -148,15 +148,15 @@ test('read test for ranges', function (t) {
 test('read test for ranges', function (t) {
   const cmd = spawn('bin/level-out', [dbName])
   const stdoutLines = [
-    '{ key: \'1\', value: \'one\' }',
-    '{ key: \'2\', value: \'two\' }',
-    '{ key: \'3\', value: \'three\' }',
-    '{ key: \'4\', value: \'four\' }',
-    '{ key: \'5\', value: \'five\' }',
-    '{ key: \'6\', value: \'six\' }',
-    '{ key: \'7\', value: \'seven\' }',
-    '{ key: \'8\', value: \'eight\' }',
-    '{ key: \'9\', value: \'nine\' }'
+    '{"key":"1","value":"one"}',
+    '{"key":"2","value":"two"}',
+    '{"key":"3","value":"three"}',
+    '{"key":"4","value":"four"}',
+    '{"key":"5","value":"five"}',
+    '{"key":"6","value":"six"}',
+    '{"key":"7","value":"seven"}',
+    '{"key":"8","value":"eight"}',
+    '{"key":"9","value":"nine"}'
   ]
   t.plan(9)
   var i = 0
