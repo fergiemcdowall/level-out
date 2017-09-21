@@ -7,31 +7,33 @@ test('Help text test', function (t) {
   const helpCmd = spawn('bin/level-out', ['-h'])
   const noParamCmd = spawn('bin/level-out')
   const helpLines =
-  ['',
-    '\n',
-    '  Usage: level-out <databaseName> [options]',
-    '\n',
-    '',
-    '\n',
-    '  Options:',
-    '\n',
-    '',
-    '\n',
-    '    -h, --help         output usage information',
-    '\n',
-    '    -V, --version      output the version number',
-    '\n',
-    '    -k, --key [value]  specify a key',
-    '\n',
-    '    -g, --gte [value]  specify start of a key range',
-    '\n',
-    '    -l, --lte [value]  specify end of a key range',
-    '\n',
-    '',
-    '\n',
-    ''
-  ]
-  t.plan(46)
+    ['',
+      '\n',
+      '  Usage: level-out <databaseName> [options]',
+      '\n',
+      '',
+      '\n',
+      '  Options:',
+      '\n',
+      '',
+      '\n',
+      '    -h, --help         output usage information',
+      '\n',
+      '    -V, --version      output the version number',
+      '\n',
+      '    -a, --array        format output as an Array',
+      '\n',
+      '    -k, --key [value]  specify a key',
+      '\n',
+      '    -g, --gte [value]  specify start of a key range',
+      '\n',
+      '    -l, --lte [value]  specify end of a key range',
+      '\n',
+      '',
+      '\n',
+      ''
+    ]
+  t.plan(50)
   noParamCmd.stdout.on('data', (data) => {
     data.toString().split(/(\r?\n)/g).forEach(function (line, i) {
       t.equal(line, helpLines[i])
@@ -86,7 +88,7 @@ test('read test', function (t) {
   const cmd1 = spawn('bin/level-out', [dbName, '-k', '2'])
   t.plan(1)
   cmd1.stdout.on('data', (data) => {
-    t.equal(data.toString(), '{"key":"2","value":"two"}\n')
+    t.equal(data.toString(), "{ key: '2', value: 'two' }\n")
   })
 })
 
@@ -166,5 +168,18 @@ test('read test for ranges', function (t) {
         t.equal(line, stdoutLines[i++])
       }
     })
+  })
+})
+
+test('read test for ranges, output as Array', function (t) {
+  const cmd = spawn('bin/level-out', [dbName, '-a'])
+  const expectedOutput = '[\n{"key":"1","value":"one"},\n{"key":"2","value":"two"},\n{"key":"3","value":"three"},\n{"key":"4","value":"four"},\n{"key":"5","value":"five"},\n{"key":"6","value":"six"},\n{"key":"7","value":"seven"},\n{"key":"8","value":"eight"},\n{"key":"9","value":"nine"}\n]\n'
+  t.plan(1)
+  var i = 0
+  var output = ''
+  cmd.stdout.on('data', (data) => {
+    output += data.toString()
+  }).on('end', function () {
+    t.looseEqual(output, expectedOutput)
   })
 })
