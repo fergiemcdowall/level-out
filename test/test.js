@@ -57,7 +57,9 @@ test('version test', function (t) {
 
 test('make a database with levelup', function (t) {
   t.plan(1)
-  levelup(dbName, {}, function (err, db) {
+  levelup(dbName, {
+    valueEncoding: 'json'
+  }, function (err, db) {
     var ops = [
       {type: 'put', key: '1', value: 'one'},
       {type: 'put', key: '2', value: 'two'},
@@ -67,7 +69,8 @@ test('make a database with levelup', function (t) {
       {type: 'put', key: '6', value: 'six'},
       {type: 'put', key: '7', value: 'seven'},
       {type: 'put', key: '8', value: 'eight'},
-      {type: 'put', key: '9', value: 'nine'}
+      {type: 'put', key: '9', value: 'nine'},
+      {type: 'put', key: '10', value: ['an', 'array']}
     ]
     if (err) {
       return console.error(err)
@@ -88,7 +91,7 @@ test('read test', function (t) {
   const cmd1 = spawn('bin/level-out', [dbName, '-k', '2'])
   t.plan(1)
   cmd1.stdout.on('data', (data) => {
-    t.equal(data.toString(), "{ key: '2', value: 'two' }\n")
+    t.equal(data.toString(), "{ key: '2', value: '\"two\"' }\n")
   })
 })
 
@@ -113,11 +116,12 @@ test('read test for ranges', function (t) {
   const cmd = spawn('bin/level-out', [dbName, '-l', '4'])
   const stdoutLines = [
     '{"key":"1","value":"one"}',
+    '{"key":"10","value":["an","array"]}',
     '{"key":"2","value":"two"}',
     '{"key":"3","value":"three"}',
     '{"key":"4","value":"four"}'
   ]
-  t.plan(4)
+  t.plan(5)
   var i = 0
   cmd.stdout.on('data', (data) => {
     data.toString().split(/(\r?\n)/g).forEach(function (line) {
@@ -151,6 +155,7 @@ test('read test for ranges', function (t) {
   const cmd = spawn('bin/level-out', [dbName])
   const stdoutLines = [
     '{"key":"1","value":"one"}',
+    '{"key":"10","value":["an","array"]}',
     '{"key":"2","value":"two"}',
     '{"key":"3","value":"three"}',
     '{"key":"4","value":"four"}',
@@ -160,7 +165,7 @@ test('read test for ranges', function (t) {
     '{"key":"8","value":"eight"}',
     '{"key":"9","value":"nine"}'
   ]
-  t.plan(9)
+  t.plan(10)
   var i = 0
   cmd.stdout.on('data', (data) => {
     data.toString().split(/(\r?\n)/g).forEach(function (line) {
@@ -173,7 +178,7 @@ test('read test for ranges', function (t) {
 
 test('read test for ranges, output as Array', function (t) {
   const cmd = spawn('bin/level-out', [dbName, '-a'])
-  const expectedOutput = '[\n{"key":"1","value":"one"},\n{"key":"2","value":"two"},\n{"key":"3","value":"three"},\n{"key":"4","value":"four"},\n{"key":"5","value":"five"},\n{"key":"6","value":"six"},\n{"key":"7","value":"seven"},\n{"key":"8","value":"eight"},\n{"key":"9","value":"nine"}\n]\n'
+  const expectedOutput = '[\n{"key":"1","value":"one"},\n{"key":"10","value":["an","array"]},\n{"key":"2","value":"two"},\n{"key":"3","value":"three"},\n{"key":"4","value":"four"},\n{"key":"5","value":"five"},\n{"key":"6","value":"six"},\n{"key":"7","value":"seven"},\n{"key":"8","value":"eight"},\n{"key":"9","value":"nine"}\n]\n'
   t.plan(1)
   var output = ''
   cmd.stdout.on('data', (data) => {
