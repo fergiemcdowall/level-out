@@ -1,5 +1,5 @@
 const dbName = 'testDB'
-const levelup = require('levelup')
+const level = require('level')
 const spawn = require('child_process').spawn
 const test = require('tape')
 
@@ -57,7 +57,7 @@ test('version test', function (t) {
 
 test('make a database with levelup', function (t) {
   t.plan(1)
-  levelup(dbName, {
+  level(dbName, {
     valueEncoding: 'json'
   }, function (err, db) {
     var ops = [
