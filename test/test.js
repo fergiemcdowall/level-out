@@ -7,33 +7,28 @@ test('Help text test', function (t) {
   const helpCmd = spawn('bin/level-out', ['-h'])
   const noParamCmd = spawn('bin/level-out')
   const helpLines =
-    ['',
-      '\n',
-      '  Usage: level-out <databaseName> [options]',
-      '\n',
-      '',
-      '\n',
-      '  Options:',
+    [
+      'Usage: level-out <databaseName> [options]',
       '\n',
       '',
       '\n',
-      '    -h, --help         output usage information',
+      'Options:',
       '\n',
-      '    -V, --version      output the version number',
+      '  -V, --version      output the version number',
       '\n',
-      '    -a, --array        format output as an Array',
+      '  -a, --array        format output as an Array',
       '\n',
-      '    -k, --key [value]  specify a key',
+      '  -k, --key [value]  specify a key',
       '\n',
-      '    -g, --gte [value]  specify start of a key range',
+      '  -g, --gte [value]  specify start of a key range',
       '\n',
-      '    -l, --lte [value]  specify end of a key range',
+      '  -l, --lte [value]  specify end of a key range',
       '\n',
-      '',
+      '  -h, --help         output usage information',
       '\n',
       ''
     ]
-  t.plan(50)
+  t.plan(38)
   noParamCmd.stdout.on('data', (data) => {
     data.toString().split(/(\r?\n)/g).forEach(function (line, i) {
       t.equal(line, helpLines[i])
