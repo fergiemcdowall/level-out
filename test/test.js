@@ -56,16 +56,16 @@ test('make a database with levelup', function (t) {
     valueEncoding: 'json'
   }, function (err, db) {
     var ops = [
-      {type: 'put', key: '1', value: 'one'},
-      {type: 'put', key: '2', value: 'two'},
-      {type: 'put', key: '3', value: 'three'},
-      {type: 'put', key: '4', value: 'four'},
-      {type: 'put', key: '5', value: 'five'},
-      {type: 'put', key: '6', value: 'six'},
-      {type: 'put', key: '7', value: 'seven'},
-      {type: 'put', key: '8', value: 'eight'},
-      {type: 'put', key: '9', value: 'nine'},
-      {type: 'put', key: '10', value: ['an', 'array']}
+      { type: 'put', key: '1', value: 'one' },
+      { type: 'put', key: '2', value: 'two' },
+      { type: 'put', key: '3', value: 'three' },
+      { type: 'put', key: '4', value: 'four' },
+      { type: 'put', key: '5', value: 'five' },
+      { type: 'put', key: '6', value: 'six' },
+      { type: 'put', key: '7', value: 'seven' },
+      { type: 'put', key: '8', value: 'eight' },
+      { type: 'put', key: '9', value: 'nine' },
+      { type: 'put', key: '10', value: ['an', 'array'] }
     ]
     if (err) {
       return console.error(err)

@@ -16,8 +16,8 @@
     "level": "5.0.1"
   },
   "devDependencies": {
-    "standard": "10.0.3",
-    "tape": "4.8.0"
+    "standard": "14.1.0",
+    "tape": "4.11.0"
   },
   "bin": {
     "level-out": "./bin/level-out"
