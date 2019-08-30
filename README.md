@@ -4,7 +4,7 @@ A simple utility for reading from a leveldb via [levelup](https://github.com/Lev
 
 ## Usage
 
-Install globally with `npm install -g level-out` and then use like so:
+Install with `npm install` and then use like so:
 
 
 ```
